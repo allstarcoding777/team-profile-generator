@@ -3,13 +3,14 @@ const generateTeam = (team) => {
     console.log(team);
 // empty array to hold the html
 const html = [];
+// function to generate the manager html
 let generateManager = (manager) => {
     console.log(manager);
     let managerHtml = `
     <div class="card employee-card">
     <div class="card-header">
     ${manager.name} <br>
-    <i class="fas fa-mug-hot mr-2"></i>Manager</div>
+    <i class="fas fa-briefcase mr-2"></i>Manager</div>
     <ul class="list-group list-group-flush">
     <li class="list-group-item">ID: ${manager.id}</li>
     <li class="list-group-item">Email: <a href="mailto:${manager.email}">${manager.email}</a></li>
@@ -20,14 +21,14 @@ let generateManager = (manager) => {
     // push the managerHtml to the html array
     html.push(managerHtml);
 }
-
+    // function to generate the engineer html
     let generateEngineer = (engineer) => {
         console.log(engineer);
         let engineerHtml = `
         <div class="card employee-card">
         <div class="card-header">
         ${engineer.name} <br>
-        <i class="fas fa-glasses"></i> Engineer</div>
+        <i class="fas fa-laptop"></i> Engineer</div>
         <ul class="list-group list-group-flush">
         <li class="list-group-item">ID: ${engineer.id}</li>
         <li class="list-group-item">Email: <a href="mailto:${engineer.email}">${engineer.email}</a></li>
@@ -35,9 +36,10 @@ let generateManager = (manager) => {
         </ul>
         </div>
         `;
+        // push the engineerHtml to the html array
         html.push(engineerHtml);
     }
-
+    // function to generate the intern html
     let generateIntern = (intern) => {
         console.log (intern);
         let internHtml = `
@@ -52,6 +54,7 @@ let generateManager = (manager) => {
         </ul>
         </div>
         `;
+        // push the internHtml to the html array
         html.push(internHtml);
     }
     // loop through the team array
