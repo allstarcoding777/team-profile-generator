@@ -261,4 +261,3 @@ const buildTeam = () => {
 
 // calls manager function to start the application, first function to run
 promptManager();
-
