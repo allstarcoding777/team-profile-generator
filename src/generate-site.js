@@ -59,6 +59,8 @@ let generateManager = (manager) => {
     }
     // loop through the team array
     for (let i = 0; i < team.length; i++) {
+        // getRole() will return the role of the employee
+        // team[i] is the employee object
         if (team[i].getRole() === 'Manager') {
             generateManager(team[i]);
         } else if (team[i].getRole() === 'Engineer') {
