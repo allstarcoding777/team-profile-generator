@@ -11,15 +11,17 @@ const Manager = require('./lib/Manager');
 // require the generate-site.js file to create the html file
 const generateSite = require('./src/generate-site.js');
 // output directory path for the html file
-const OUTPUT_DIR = path.resolve(__dirname, "output");
+const OUTPUT_DIR = path.resolve(__dirname, 'output');
 // output path for the html file
-const outputPath = path.join(OUTPUT_DIR, "team.html");
+const outputPath = path.join(OUTPUT_DIR, 'team.html');
 // empty array to hold the team members
 const teamMembers = [];
 
 // function to prompt the user for Manager information
 const promptManager = () => {
+    // inquirer.prompt will prompt the user for input in the command line
     return inquirer.prompt([
+        // questions to prompt the user for Manager information
         {
             type: 'input',
             name: 'name',
@@ -72,11 +74,15 @@ const promptManager = () => {
                 }
             }
         },
+    // then the user's answers will be stored in the answers object
     ]).then(answers => {
         console.log(answers);
-        const manager = new Manager(answers.name, answers.employeeId, answers.email, answers.officeNumber);
-        teamMembers.push(manager);
+        // updatedManager object is created using the Manager class, new Manager object is created using the answers object
+        const updatedManager = new Manager(answers.name, answers.employeeId, answers.email, answers.officeNumber);
+        // push the updatedManager object into the teamMembers array
+        teamMembers.push(updatedManager);
         console.log(teamMembers);
+        // call the promptMenu function which will prompt the user to choose from a list of options
         promptMenu();
     })
 };
@@ -84,13 +90,16 @@ const promptManager = () => {
 // function to prompt the user to choose from a list of options
 const promptMenu = () => {
     return inquirer.prompt([
+        // list of options to choose from
         {
             type: 'list',
             name: 'menu',
             message: 'What would you like to do?',
-            choices: ['Add an Engineer', 'Add an Intern', 'Finish building my team']
+            choices: ['Add an Engineer', 'Add an Intern', 'Finish Building My Team']
         }])
+        // then the user's choice will be stored in the userChoice object
         .then(userChoice => {
+            // switch statement to determine which function to call based on the user's choice
             switch (userChoice.menu) {
                 case 'Add an Engineer':
                     promptEngineer();
@@ -98,7 +107,7 @@ const promptMenu = () => {
                 case 'Add an Intern':
                     promptIntern();
                     break;
-                case 'Finish building my team':
+                case 'Finish Building My Team':
                     buildTeam();
                     break;
                 default:
@@ -107,14 +116,16 @@ const promptMenu = () => {
         });
     };
 
+    // function to prompt the user for Engineer information
     const promptEngineer = () => {
         console.log(`
     =================
     Add an Engineer to the Team
     =================
     `);
-
+    // inquirer.prompt will prompt the user for input in the command line
     return inquirer.prompt([
+        // questions to prompt the user for Engineer information
         {
             type: 'input',
             name: 'name',
@@ -167,23 +178,29 @@ const promptMenu = () => {
                 }
             }
         },
+    // then the user's answers will be stored in the answers object
     ]).then(answers => {
         console.log(answers);
-        const engineer = new Engineer(answers.name, answers.employeeId, answers.email, answers.github);
-        teamMembers.push(engineer);
+        // updatedEngineer object is created using the Engineer class, new Engineer object is created using the answers object
+        const updatedEngineer = new Engineer(answers.name, answers.employeeId, answers.email, answers.github);
+        // push the updatedEngineer object into the teamMembers array
+        teamMembers.push(updatedEngineer);
         console.log(teamMembers);
+        // call the promptMenu function
         promptMenu();
     })
 };
 
+// function to prompt the user for Intern information
 const promptIntern = () => {
     console.log(`
     =================
     Add an Intern to the Team
     =================
     `);
-
+    // inquirer.prompt will prompt the user for input in the command line
     return inquirer.prompt([
+        // questions to prompt the user for Intern information
         {
             type: 'input',
             name: 'name',
@@ -236,15 +253,20 @@ const promptIntern = () => {
                 }
             }
         },
+    // then the user's answers will be stored in the answers object
     ]).then(answers => {
         console.log(answers);
-        const intern = new Intern(answers.name, answers.employeeId, answers.email, answers.school);
-        teamMembers.push(intern);
+        // updatedIntern object is created using the Intern class, new Intern object is created using the answers object
+        const updatedIntern = new Intern(answers.name, answers.employeeId, answers.email, answers.school);
+        // push the updatedIntern object into the teamMembers array
+        teamMembers.push(updatedIntern);
         console.log(teamMembers);
+        // call the promptMenu function
         promptMenu();
     })
 };
 
+// function to build the team
 const buildTeam = () => {
     console.log(`
     =================
@@ -255,7 +277,7 @@ const buildTeam = () => {
     if (!fs.existsSync(OUTPUT_DIR)) {
         fs.mkdirSync(OUTPUT_DIR)
     }
-    // write the file
+    // write the file to the output directory
     fs.writeFileSync(outputPath, generateSite(teamMembers), "utf-8");
 }
 

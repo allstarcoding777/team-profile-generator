@@ -1,11 +1,12 @@
-// when generateTeam is called, it will return the html array
-const generateTeam = (team) => {
+// when createTeam is called, it will return the html array, team is the array of employees
+const createTeam = (team) => {
     console.log(team);
-// empty array to hold the html
+// empty array to hold the html of the team
 const html = [];
 // function to generate the manager html
 let generateManager = (manager) => {
     console.log(manager);
+    // managerHtml is the html for the manager with the manager object's properties
     let managerHtml = `
     <div class="card employee-card">
     <div class="card-header">
@@ -24,6 +25,7 @@ let generateManager = (manager) => {
     // function to generate the engineer html
     let generateEngineer = (engineer) => {
         console.log(engineer);
+        // engineerHtml is the html for the engineer with the engineer object's properties
         let engineerHtml = `
         <div class="card employee-card">
         <div class="card-header">
@@ -42,6 +44,7 @@ let generateManager = (manager) => {
     // function to generate the intern html
     let generateIntern = (intern) => {
         console.log (intern);
+        // internHtml is the html for the intern with the intern object's properties
         let internHtml = `
         <div class="card employee-card">
         <div class="card-header">
@@ -73,6 +76,7 @@ let generateManager = (manager) => {
     return html.join('');
 }
 
+// export the createTeam function, team is the array of employees
 module.exports = team => {
     return `
     <!DOCTYPE html>
@@ -99,7 +103,7 @@ module.exports = team => {
     <div class="container card-deck">
     <div class="row">
     <div class="team-area col-12 d-flex justify-content-center">
-    ${generateTeam(team)}
+    ${createTeam(team)}
     </div>
     </div>
     </div>
